@@ -21,6 +21,26 @@ CREATE TABLE IF NOT EXISTS projects (
 
 conn.commit()
 
+# Add starter project data only if the database is empty
+cursor.execute("SELECT COUNT(*) FROM projects")
+project_count = cursor.fetchone()[0]
+
+if project_count == 0:
+    starter_projects = [
+    ("Project 1", "Client 1", "Houston", 400, 300, 0, 75.0, "In Progress", "Good"),
+    ("Project 2", "Client 2", "Dallas", 300, 250, 3, 83.3, "In Progress", "Needs Attention"),
+    ("Project 3", "Client 3", "Austin", 500, 500, 0, 100.0, "Completed", "Good")
+]
+
+    cursor.executemany("""
+        INSERT INTO projects
+        (name, client, location, total_devices, completed_devices,
+         open_issues, completion_percentage, status, health)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, starter_projects)
+
+    conn.commit()
+
 cursor.execute("SELECT * FROM projects")
 projects = cursor.fetchall()
 
