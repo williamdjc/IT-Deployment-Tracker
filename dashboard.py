@@ -4,6 +4,23 @@ import sqlite3
 conn = sqlite3.connect("projects.db")
 cursor = conn.cursor()
 
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS projects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    client TEXT,
+    location TEXT,
+    total_devices INTEGER,
+    completed_devices INTEGER,
+    open_issues INTEGER,
+    completion_percentage REAL,
+    status TEXT,
+    health TEXT
+)
+""")
+
+conn.commit()
+
 cursor.execute("SELECT * FROM projects")
 projects = cursor.fetchall()
 
