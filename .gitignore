@@ -1,0 +1,4 @@
+.vs/
+projects.db
+__pycache__/
+*.pyc
