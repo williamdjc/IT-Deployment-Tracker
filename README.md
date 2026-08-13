@@ -1,3 +1,7 @@
+## Dashboard Preview
+
+![IT Deployment Tracker Dashboard](Dashboard2.png)
+
 # IT Deployment Tracker
 
 A Python-based IT deployment tracking application that uses SQLite for data storage and Streamlit for an interactive dashboard.
